@@ -318,8 +318,8 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
     return (
       <div className="flex-1 flex items-center justify-center bg-chat-bg">
         <div className="text-center">
-          <MessageCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-          <p className="text-lg text-muted-foreground">Select a user to start chatting</p>
+          <MessageCircle className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+          <p className="text-base text-muted-foreground">Select a user to start chatting</p>
         </div>
       </div>
     );
@@ -327,16 +327,16 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
 
   return (
     <div className="flex-1 flex flex-col bg-chat-bg">
-      <div className="p-4 bg-card border-b border-border">
+      <div className="p-3 bg-card border-b border-border">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-semibold text-lg">{selectedUser.username}</h2>
-            <p className="text-sm text-muted-foreground">
+            <h2 className="font-semibold text-base">{selectedUser.username}</h2>
+            <p className="text-xs text-muted-foreground">
               {sharedKeyRef.current ? "Secure connection established" : "Setting up encryption..."}
             </p>
           </div>
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Lock className={sharedKeyRef.current ? "w-4 h-4 text-green-500" : "w-4 h-4"} />
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <Lock className={sharedKeyRef.current ? "w-3.5 h-3.5 text-green-500" : "w-3.5 h-3.5"} />
             <span className={sharedKeyRef.current ? "text-green-500" : ""}>
               {sharedKeyRef.current ? "Encrypted" : "Encrypting..."}
             </span>
@@ -344,8 +344,8 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
         </div>
       </div>
 
-      <ScrollArea className="flex-1 p-4">
-        <div className="space-y-4">
+      <ScrollArea className="flex-1 p-3">
+        <div className="space-y-3">
           {messages.map((message) => {
             const isSent = message.sender_id === currentUserId;
             return (
@@ -354,15 +354,15 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
                 className={`flex ${isSent ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[70%] rounded-lg p-3 ${
+                  className={`max-w-[70%] rounded-lg p-2 ${
                     isSent
                       ? "bg-message-sent text-primary-foreground"
                       : "bg-message-received"
                   }`}
                 >
-                  <p className="break-words">{message.content}</p>
+                  <p className="break-words text-sm">{message.content}</p>
                   <p
-                    className={`text-xs mt-1 ${
+                    className={`text-xs mt-0.5 ${
                       isSent ? "text-primary-foreground/70" : "text-muted-foreground"
                     }`}
                   >
@@ -379,21 +379,22 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
         </div>
       </ScrollArea>
 
-      <form onSubmit={handleSendMessage} className="p-4 bg-card border-t border-border">
+      <form onSubmit={handleSendMessage} className="p-3 bg-card border-t border-border">
         <div className="flex gap-2">
           <Input
             placeholder="Type a message..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             disabled={loading || !encryptionReady}
-            className="flex-1"
+            className="flex-1 h-8 text-sm"
           />
           <Button
             type="submit"
             disabled={loading || !newMessage.trim() || !encryptionReady}
-            className="hover:bg-primary-hover"
+            className="hover:bg-primary-hover h-8 w-8 p-0"
+            size="icon"
           >
-            <Send className="w-4 h-4" />
+            <Send className="w-3.5 h-3.5" />
           </Button>
         </div>
       </form>

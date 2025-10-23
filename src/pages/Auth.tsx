@@ -126,48 +126,48 @@ const Auth = () => {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
         <div className="max-w-4xl w-full space-y-8">
-          <div className="text-center space-y-4">
-            <MessageCircle className="w-16 h-16 text-primary mx-auto" />
-            <h1 className="text-4xl font-bold">Welcome to Charcha App</h1>
-            <p className="text-lg text-muted-foreground">Connect with friends and family instantly</p>
+          <div className="text-center space-y-3">
+            <MessageCircle className="w-12 h-12 text-primary mx-auto" />
+            <h1 className="text-3xl font-bold">Welcome to Charcha App</h1>
+            <p className="text-base text-muted-foreground">Connect with friends and family instantly</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
+          <div className="grid md:grid-cols-2 gap-4 mt-8">
             <Card>
-              <CardHeader>
-                <Shield className="w-10 h-10 text-primary mb-2" />
-                <CardTitle>End-to-End Encryption</CardTitle>
-                <CardDescription>Your messages are secure and private</CardDescription>
+              <CardHeader className="p-4">
+                <Shield className="w-7 h-7 text-primary mb-1" />
+                <CardTitle className="text-base">End-to-End Encryption</CardTitle>
+                <CardDescription className="text-sm">Your messages are secure and private</CardDescription>
               </CardHeader>
             </Card>
 
             <Card>
-              <CardHeader>
-                <Zap className="w-10 h-10 text-primary mb-2" />
-                <CardTitle>Real-time Messaging</CardTitle>
-                <CardDescription>Instant message delivery and notifications</CardDescription>
+              <CardHeader className="p-4">
+                <Zap className="w-7 h-7 text-primary mb-1" />
+                <CardTitle className="text-base">Real-time Messaging</CardTitle>
+                <CardDescription className="text-sm">Instant message delivery and notifications</CardDescription>
               </CardHeader>
             </Card>
 
             <Card>
-              <CardHeader>
-                <Users className="w-10 h-10 text-primary mb-2" />
-                <CardTitle>Find Friends</CardTitle>
-                <CardDescription>Easily search and connect with users</CardDescription>
+              <CardHeader className="p-4">
+                <Users className="w-7 h-7 text-primary mb-1" />
+                <CardTitle className="text-base">Find Friends</CardTitle>
+                <CardDescription className="text-sm">Easily search and connect with users</CardDescription>
               </CardHeader>
             </Card>
 
             <Card>
-              <CardHeader>
-                <MessageCircle className="w-10 h-10 text-primary mb-2" />
-                <CardTitle>Simple Interface</CardTitle>
-                <CardDescription>Clean and intuitive design</CardDescription>
+              <CardHeader className="p-4">
+                <MessageCircle className="w-7 h-7 text-primary mb-1" />
+                <CardTitle className="text-base">Simple Interface</CardTitle>
+                <CardDescription className="text-sm">Clean and intuitive design</CardDescription>
               </CardHeader>
             </Card>
           </div>
 
-          <div className="flex justify-center mt-8">
-            <Button size="lg" onClick={() => setShowAuth(true)} className="hover:bg-primary-hover">
+          <div className="flex justify-center mt-6">
+            <Button size="default" onClick={() => setShowAuth(true)} className="hover:bg-primary-hover">
               Continue to Chat
             </Button>
           </div>
@@ -179,22 +179,22 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <MessageCircle className="w-12 h-12 text-primary mx-auto mb-2" />
-          <CardTitle>Welcome to Charcha App</CardTitle>
-          <CardDescription>Sign in or create an account to start chatting</CardDescription>
+        <CardHeader className="text-center p-4">
+          <MessageCircle className="w-9 h-9 text-primary mx-auto mb-1" />
+          <CardTitle className="text-lg">Welcome to Charcha App</CardTitle>
+          <CardDescription className="text-sm">Sign in or create an account to start chatting</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-4">
           <Tabs defaultValue="signin" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="signin">Sign In</TabsTrigger>
-              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 h-8">
+              <TabsTrigger value="signin" className="text-sm">Sign In</TabsTrigger>
+              <TabsTrigger value="signup" className="text-sm">Sign Up</TabsTrigger>
             </TabsList>
             
             <TabsContent value="signin">
-              <form onSubmit={handleSignIn} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="signin-email">Email</Label>
+              <form onSubmit={handleSignIn} className="space-y-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="signin-email" className="text-sm">Email</Label>
                   <Input
                     id="signin-email"
                     type="email"
@@ -202,10 +202,11 @@ const Auth = () => {
                     value={signInData.email}
                     onChange={(e) => setSignInData({ ...signInData, email: e.target.value })}
                     required
+                    className="h-8 text-sm"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signin-password">Password</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="signin-password" className="text-sm">Password</Label>
                   <Input
                     id="signin-password"
                     type="password"
@@ -213,18 +214,19 @@ const Auth = () => {
                     value={signInData.password}
                     onChange={(e) => setSignInData({ ...signInData, password: e.target.value })}
                     required
+                    className="h-8 text-sm"
                   />
                 </div>
-                <Button type="submit" className="w-full hover:bg-primary-hover" disabled={loading}>
+                <Button type="submit" className="w-full hover:bg-primary-hover text-sm" disabled={loading} size="sm">
                   {loading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
             </TabsContent>
             
             <TabsContent value="signup">
-              <form onSubmit={handleSignUp} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="signup-username">Username</Label>
+              <form onSubmit={handleSignUp} className="space-y-3">
+                <div className="space-y-1.5">
+                  <Label htmlFor="signup-username" className="text-sm">Username</Label>
                   <Input
                     id="signup-username"
                     type="text"
@@ -232,10 +234,11 @@ const Auth = () => {
                     value={signUpData.username}
                     onChange={(e) => setSignUpData({ ...signUpData, username: e.target.value })}
                     required
+                    className="h-8 text-sm"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-email">Email</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="signup-email" className="text-sm">Email</Label>
                   <Input
                     id="signup-email"
                     type="email"
@@ -243,10 +246,11 @@ const Auth = () => {
                     value={signUpData.email}
                     onChange={(e) => setSignUpData({ ...signUpData, email: e.target.value })}
                     required
+                    className="h-8 text-sm"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="signup-password">Password</Label>
+                <div className="space-y-1.5">
+                  <Label htmlFor="signup-password" className="text-sm">Password</Label>
                   <Input
                     id="signup-password"
                     type="password"
@@ -254,9 +258,10 @@ const Auth = () => {
                     value={signUpData.password}
                     onChange={(e) => setSignUpData({ ...signUpData, password: e.target.value })}
                     required
+                    className="h-8 text-sm"
                   />
                 </div>
-                <Button type="submit" className="w-full hover:bg-primary-hover" disabled={loading}>
+                <Button type="submit" className="w-full hover:bg-primary-hover text-sm" disabled={loading} size="sm">
                   {loading ? "Creating account..." : "Sign Up"}
                 </Button>
               </form>

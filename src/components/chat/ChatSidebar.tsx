@@ -65,43 +65,43 @@ const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onO
   );
 
   return (
-    <div className="w-80 bg-card border-r border-border flex flex-col">
-      <div className="p-4 border-b border-border space-y-4">
+    <div className="w-60 bg-card border-r border-border flex flex-col">
+      <div className="p-3 border-b border-border space-y-3">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <MessageCircle className="w-8 h-8 text-primary" />
+          <div className="flex items-center gap-2">
+            <MessageCircle className="w-6 h-6 text-primary" />
             <div>
-              <h2 className="font-semibold text-lg">Charcha App</h2>
+              <h2 className="font-semibold text-base">Charcha App</h2>
               {currentUserProfile && (
                 <p className="text-xs text-muted-foreground">{currentUserProfile.username}</p>
               )}
             </div>
           </div>
           <div className="flex gap-1">
-            <Button variant="ghost" size="icon" onClick={onOpenSettings}>
-              <SettingsIcon className="w-5 h-5" />
+            <Button variant="ghost" size="icon" onClick={onOpenSettings} className="h-7 w-7">
+              <SettingsIcon className="w-4 h-4" />
             </Button>
-            <Button variant="ghost" size="icon" onClick={onSignOut}>
-              <LogOut className="w-5 h-5" />
+            <Button variant="ghost" size="icon" onClick={onSignOut} className="h-7 w-7">
+              <LogOut className="w-4 h-4" />
             </Button>
           </div>
         </div>
         
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
           <Input
             placeholder="Search users..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9"
+            className="pl-7 h-8 text-sm"
           />
         </div>
       </div>
 
       <ScrollArea className="flex-1">
-        <div className="p-2">
+        <div className="p-1.5">
           {filteredUsers.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
+            <div className="text-center py-6 text-muted-foreground text-sm">
               <p>No users found</p>
             </div>
           ) : (
@@ -109,18 +109,18 @@ const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onO
               <button
                 key={user.id}
                 onClick={() => onSelectUser(user)}
-                className={`w-full p-3 rounded-lg flex items-center gap-3 hover:bg-muted transition-colors ${
+                className={`w-full p-2 rounded-lg flex items-center gap-2 hover:bg-muted transition-colors ${
                   selectedUser?.id === user.id ? "bg-muted" : ""
                 }`}
               >
-                <Avatar>
-                  <AvatarFallback className="bg-primary text-primary-foreground">
+                <Avatar className="h-8 w-8">
+                  <AvatarFallback className="bg-primary text-primary-foreground text-sm">
                     {user.username.charAt(0).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1 text-left">
-                  <p className="font-medium">{user.username}</p>
-                  <p className="text-sm text-muted-foreground">Online</p>
+                  <p className="font-medium text-sm">{user.username}</p>
+                  <p className="text-xs text-muted-foreground">Online</p>
                 </div>
               </button>
             ))

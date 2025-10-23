@@ -65,30 +65,30 @@ const Settings = ({ open, onOpenChange }: SettingsProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Settings</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-base">Settings</DialogTitle>
+          <DialogDescription className="text-sm">
             Manage your chat preferences and privacy settings
           </DialogDescription>
         </DialogHeader>
         
-        <div className="space-y-6 py-4">
+        <div className="space-y-4 py-3">
           {/* Encryption Status */}
-          <div className="flex items-start space-x-4 p-4 bg-muted rounded-lg">
-            <Lock className="w-5 h-5 text-primary mt-0.5" />
+          <div className="flex items-start space-x-3 p-3 bg-muted rounded-lg">
+            <Lock className="w-4 h-4 text-primary mt-0.5" />
             <div>
-              <h4 className="font-medium">End-to-End Encryption</h4>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h4 className="font-medium text-sm">End-to-End Encryption</h4>
+              <p className="text-xs text-muted-foreground mt-0.5">
                 All messages are encrypted on your device. Only you and the recipient can read them.
               </p>
             </div>
           </div>
 
           {/* Local Storage Info */}
-          <div className="flex items-start space-x-4 p-4 bg-muted rounded-lg">
-            <Database className="w-5 h-5 text-primary mt-0.5" />
+          <div className="flex items-start space-x-3 p-3 bg-muted rounded-lg">
+            <Database className="w-4 h-4 text-primary mt-0.5" />
             <div>
-              <h4 className="font-medium">Local Message Storage</h4>
-              <p className="text-sm text-muted-foreground mt-1">
+              <h4 className="font-medium text-sm">Local Message Storage</h4>
+              <p className="text-xs text-muted-foreground mt-0.5">
                 Messages are stored locally on your device for privacy and offline access.
               </p>
             </div>
@@ -96,11 +96,11 @@ const Settings = ({ open, onOpenChange }: SettingsProps) => {
 
           {/* Notifications */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Bell className="w-5 h-5 text-muted-foreground" />
+            <div className="flex items-center space-x-3">
+              <Bell className="w-4 h-4 text-muted-foreground" />
               <div>
-                <Label htmlFor="notifications">Notifications</Label>
-                <p className="text-sm text-muted-foreground">
+                <Label htmlFor="notifications" className="text-sm">Notifications</Label>
+                <p className="text-xs text-muted-foreground">
                   Get notified of new messages
                 </p>
               </div>
@@ -113,16 +113,17 @@ const Settings = ({ open, onOpenChange }: SettingsProps) => {
           </div>
 
           {/* Clear Messages */}
-          <div className="pt-4 border-t">
+          <div className="pt-3 border-t">
             <Button
               variant="destructive"
               onClick={handleClearMessages}
-              className="w-full"
+              className="w-full text-sm"
+              size="sm"
             >
-              <Trash2 className="w-4 h-4 mr-2" />
+              <Trash2 className="w-3.5 h-3.5 mr-1.5" />
               Clear All Local Messages
             </Button>
-            <p className="text-xs text-muted-foreground mt-2 text-center">
+            <p className="text-xs text-muted-foreground mt-1.5 text-center">
               This will delete all messages stored on this device
             </p>
           </div>
