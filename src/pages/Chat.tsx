@@ -84,10 +84,12 @@ const Chat = () => {
         onSelectUser={setSelectedUser}
         onSignOut={handleSignOut}
         onOpenSettings={() => setSettingsOpen(true)}
+        onCloseSidebar={() => setSelectedUser(selectedUser)}
       />
       <ChatWindow
         currentUserId={user.id}
         selectedUser={selectedUser}
+        onBack={() => setSelectedUser(null)}
       />
       <Settings
         open={settingsOpen}

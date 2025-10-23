@@ -37,13 +37,14 @@ interface Message {
 interface ChatWindowProps {
   currentUserId: string;
   selectedUser: Profile | null;
+  onBack?: () => void;
 }
 
 const messageSchema = z.object({
   content: z.string().trim().min(1, "Message cannot be empty").max(5000, "Message is too long"),
 });
 
-const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
+const ChatWindow = ({ currentUserId, selectedUser, onBack }: ChatWindowProps) => {
   const [messages, setMessages] = useState<StoredMessage[]>([]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -175,8 +176,34 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
     if (!selectedUser) return;
 
     try {
-      // Load messages from local storage only
+      // First, fetch messages from database that may have been sent while offline
+      const { data: dbMessages, error } = await (supabase as any)
+        .from("messages")
+        .select("*")
+        .or(`and(sender_id.eq.${currentUserId},receiver_id.eq.${selectedUser.id}),and(sender_id.eq.${selectedUser.id},receiver_id.eq.${currentUserId})`)
+        .order("created_at", { ascending: true });
+
+      if (error) throw error;
+
       const chatId = getChatId(currentUserId, selectedUser.id);
+      
+      // Decrypt and store messages locally
+      if (dbMessages && dbMessages.length > 0 && sharedKeyRef.current) {
+        for (const msg of dbMessages) {
+          const decryptedContent = await decryptMessage(msg.content, sharedKeyRef.current);
+          const storedMessage: StoredMessage = {
+            id: msg.id,
+            sender_id: msg.sender_id,
+            receiver_id: msg.receiver_id,
+            content: decryptedContent,
+            created_at: msg.created_at,
+            chat_id: chatId,
+          };
+          await storeMessageLocally(storedMessage);
+        }
+      }
+
+      // Load all messages from local storage
       const localMessages = await getLocalMessages(chatId);
       setMessages(localMessages);
     } catch (error) {
@@ -329,11 +356,23 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
     <div className="flex-1 flex flex-col bg-chat-bg">
       <div className="p-3 bg-card border-b border-border">
         <div className="flex items-center justify-between">
-          <div>
-            <h2 className="font-semibold text-base">{selectedUser.username}</h2>
-            <p className="text-xs text-muted-foreground">
-              {sharedKeyRef.current ? "Secure connection established" : "Setting up encryption..."}
-            </p>
+          <div className="flex items-center gap-2">
+            {onBack && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden h-7 w-7"
+                onClick={onBack}
+              >
+                <Send className="w-3.5 h-3.5 rotate-180" />
+              </Button>
+            )}
+            <div>
+              <h2 className="font-semibold text-base">{selectedUser.username}</h2>
+              <p className="text-xs text-muted-foreground hidden md:block">
+                {sharedKeyRef.current ? "Secure connection established" : "Setting up encryption..."}
+              </p>
+            </div>
           </div>
           <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
             <Lock className={sharedKeyRef.current ? "w-3.5 h-3.5 text-green-500" : "w-3.5 h-3.5"} />

@@ -14,9 +14,10 @@ interface ChatSidebarProps {
   onSelectUser: (user: Profile) => void;
   onSignOut: () => void;
   onOpenSettings: () => void;
+  onCloseSidebar: () => void;
 }
 
-const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onOpenSettings }: ChatSidebarProps) => {
+const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onOpenSettings, onCloseSidebar }: ChatSidebarProps) => {
   const [users, setUsers] = useState<Profile[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentUserProfile, setCurrentUserProfile] = useState<Profile | null>(null);
@@ -65,7 +66,7 @@ const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onO
   );
 
   return (
-    <div className="w-60 bg-card border-r border-border flex flex-col">
+    <div className={`w-60 bg-card border-r border-border flex flex-col ${selectedUser ? 'hidden md:flex' : 'flex'}`}>
       <div className="p-3 border-b border-border space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
