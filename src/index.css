@@ -8,77 +8,77 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 13%;
+    --background: 168 48% 91%;
+    --foreground: 199 100% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 13%;
+    --card-foreground: 199 100% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 13%;
+    --popover-foreground: 199 100% 10%;
 
-    --primary: 142 70% 49%;
+    --primary: 181 75% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 142 70% 42%;
+    --primary-hover: 181 75% 30%;
 
-    --secondary: 210 17% 95%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary: 205 16% 75%;
+    --secondary-foreground: 199 100% 10%;
 
-    --muted: 210 17% 95%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 205 16% 85%;
+    --muted-foreground: 205 16% 45%;
 
-    --accent: 142 70% 49%;
+    --accent: 181 75% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 142 70% 49%;
+    --border: 205 16% 85%;
+    --input: 0 0% 100%;
+    --ring: 181 75% 35%;
 
     --radius: 0.75rem;
 
-    --chat-bg: 210 17% 95%;
-    --message-sent: 142 70% 49%;
+    --chat-bg: 168 48% 96%;
+    --message-sent: 181 75% 35%;
     --message-received: 0 0% 100%;
 
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 98%;
+    --background: 199 100% 10%;
+    --foreground: 168 48% 91%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
+    --card: 199 100% 15%;
+    --card-foreground: 168 48% 91%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 199 100% 15%;
+    --popover-foreground: 168 48% 91%;
 
-    --primary: 142 70% 49%;
+    --primary: 181 75% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 142 70% 42%;
+    --primary-hover: 181 75% 40%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 205 16% 25%;
+    --secondary-foreground: 168 48% 91%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 205 16% 20%;
+    --muted-foreground: 205 16% 65%;
 
-    --accent: 142 70% 49%;
+    --accent: 181 75% 35%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 142 70% 49%;
+    --border: 205 16% 25%;
+    --input: 199 100% 15%;
+    --ring: 181 75% 35%;
 
-    --chat-bg: 0 0% 10%;
-    --message-sent: 142 70% 49%;
-    --message-received: 0 0% 15%;
+    --chat-bg: 199 100% 8%;
+    --message-sent: 181 75% 35%;
+    --message-received: 199 100% 15%;
   }
 }
 

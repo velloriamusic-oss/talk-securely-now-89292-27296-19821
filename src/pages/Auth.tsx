@@ -60,7 +60,7 @@ const Auth = () => {
 
       toast({
         title: "Account created!",
-        description: "Welcome to ChatApp. Redirecting...",
+        description: "Welcome to Charcha App. Redirecting...",
       });
       
       navigate("/chat");
@@ -128,7 +128,7 @@ const Auth = () => {
         <div className="max-w-4xl w-full space-y-8">
           <div className="text-center space-y-4">
             <MessageCircle className="w-16 h-16 text-primary mx-auto" />
-            <h1 className="text-4xl font-bold">Welcome to ChatApp</h1>
+            <h1 className="text-4xl font-bold">Welcome to Charcha App</h1>
             <p className="text-lg text-muted-foreground">Connect with friends and family instantly</p>
           </div>
 
@@ -181,7 +181,7 @@ const Auth = () => {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <MessageCircle className="w-12 h-12 text-primary mx-auto mb-2" />
-          <CardTitle>Welcome to ChatApp</CardTitle>
+          <CardTitle>Welcome to Charcha App</CardTitle>
           <CardDescription>Sign in or create an account to start chatting</CardDescription>
         </CardHeader>
         <CardContent>

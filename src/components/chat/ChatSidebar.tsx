@@ -71,7 +71,7 @@ const ChatSidebar = ({ currentUserId, selectedUser, onSelectUser, onSignOut, onO
           <div className="flex items-center gap-3">
             <MessageCircle className="w-8 h-8 text-primary" />
             <div>
-              <h2 className="font-semibold text-lg">ChatApp</h2>
+              <h2 className="font-semibold text-lg">Charcha App</h2>
               {currentUserProfile && (
                 <p className="text-xs text-muted-foreground">{currentUserProfile.username}</p>
               )}

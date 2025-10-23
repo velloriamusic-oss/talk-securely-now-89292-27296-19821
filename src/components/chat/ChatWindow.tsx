@@ -92,7 +92,10 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
           .update({ public_key: JSON.stringify(keyPair.publicKey) })
           .eq("id", currentUserId);
 
-        if (error) throw error;
+        if (error) {
+          console.error("Failed to upload public key:", error);
+          throw error;
+        }
       }
 
       myKeyPairRef.current = keyPair;
@@ -125,7 +128,7 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
           .from("profiles")
           .select("public_key")
           .eq("id", selectedUser.id)
-          .single();
+          .maybeSingle();
 
         if (error) {
           console.error("Error fetching peer profile:", error);
@@ -172,10 +175,6 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
     if (!selectedUser) return;
 
     try {
-      // Clean up old messages from database (ephemeral transport layer)
-      await (supabase as any).rpc('delete_old_messages');
-      await (supabase as any).rpc('delete_undelivered_messages');
-      
       // Load messages from local storage only
       const chatId = getChatId(currentUserId, selectedUser.id);
       const localMessages = await getLocalMessages(chatId);
@@ -275,10 +274,13 @@ const ChatWindow = ({ currentUserId, selectedUser }: ChatWindowProps) => {
         receiver_id: selectedUser.id,
         content: encryptedContent,
         encrypted: true,
-        delivered_at: new Date().toISOString(), // Mark as delivered immediately
+        delivered_at: new Date().toISOString(),
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Failed to send message:", error);
+        throw error;
+      }
 
       // Store locally (with decrypted content)
       const localMessage: StoredMessage = {
